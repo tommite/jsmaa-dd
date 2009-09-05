@@ -13,6 +13,13 @@
   			<layout>default</layout>
 		</repository>
 	</repositories>	
+	
+    <pluginRepositories>
+        <pluginRepository>
+            <id>onejar-maven-plugin.googlecode.com</id>
+            <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+        </pluginRepository>
+    </pluginRepositories>	
 
 	<build>
 		<sourceDirectory>${basedir}/src</sourceDirectory>
@@ -22,6 +29,43 @@
 				<directory>${basedir}/resource</directory>
 			</resource>
 		</resources>
+		
+    	<plugins>
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-jar-plugin</artifactId>
+        		<configuration>
+          			<archive>
+            			<manifest>
+              				<addClasspath>true</addClasspath>
+              				<mainClass>fi.smaa.jsmaadd.SMAADDMain</mainClass>
+            			</manifest>
+          			</archive>
+        		</configuration>
+	    	</plugin>
+	    	
+        <plugin>
+            <groupId>org.dstovall</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                        	<mainClass>fi.smaa.jsmaadd.SMAADDMain</mainClass>
+                            <!-- Optional -->
+                            <onejarVersion>0.96</onejarVersion>
+                            <!-- Optional, default is false -->
+                            <attachToBuild>true</attachToBuild>
+                            <!-- Optional, default is "onejar" -->
+                            <classifier>onejar</classifier>
+                        </configuration>
+                        <goals>
+                            <goal>one-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>	    	
+    	</plugins>		
 	</build>
 	<dependencies>
 		<dependency>
