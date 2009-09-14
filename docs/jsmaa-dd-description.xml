@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<program_description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../docs/w3-ws/specificationData/description.xsd">
+
+   <program provider="DecisionDeck"
+       name="JSMAA"
+       displayName="JSMAA"
+       version="0.2" />
+   <documentation>
+       <description>JSMAA adapter for DD. Currently implements only SMAA-2 without preference information and only cardinal interval measurements of reals.</description>
+       <contact>Tommi Tervonen (t.p.tervonen@rug.nl)</contact>
+       <url>http://www.smaa.fi</url>
+   </documentation>
+
+   <parameters>
+
+       <input id="criteria" name="criteria" displayName="criteria"
+           isoptional="0">
+
+           <documentation>
+               <description>A list of criteria. </description>
+           </documentation>
+           <xmcda tag="criteria">
+               <![CDATA[
+                   <criteria>
+                       <criterion>
+                           [...]
+                       </criterion>
+                       [...]
+                   </criteria>
+                   ]]>
+           </xmcda>
+       </input>
+
+
+       <input id="alternatives" name="alternatives" displayName="alternatives"
+           isoptional="0">
+
+           <documentation>
+               <description>A list of alternatives. </description>
+           </documentation>
+           <xmcda tag="alternatives">
+               <![CDATA[
+                   <alternatives>
+                       <alternative>
+                           [...]
+                       </alternative>
+                       [...]
+                   </alternatives>
+                   ]]>
+           </xmcda>
+       </input>
+
+       <input id="performanceTable"
+           name="performanceTable"
+           displayName="performanceTable"
+           isoptional="0">
+
+           <documentation>
+               <description>A performance table. The evaluations should be numeric values, i.e. &lt;real&gt;, &lt;integer&gt; or &lt;rational&gt;.</description>
+           </documentation>
+           <xmcda tag="performanceTable"/>
+       </input>
+
+       <output id="messages"
+           name="messages"
+           displayName="messages">
+
+           <documentation>
+               <description>Output of messages. Currently always outputs execution succesful :)</description>
+           </documentation>
+           <xmcda tag="methodMessages"/>
+       </output>
+
+	<output id="centralWeights"
+           name="centralWeights"
+           displayName="centralWeights">
+           <documentation>
+               <description>Central weights of SMAA-2 computation.</description>
+           </documentation>
+           <xmcda tag="alternativesCriteriaValues"/>
+       </output>
+
+	<output id="confidenceFactors"
+           name="confidenceFactors"
+           displayName="confidenceFactors">
+           <documentation>
+               <description>Confidence factors of SMAA-2 computation.</description>
+           </documentation>
+           <xmcda tag="alternativesValues"/>
+       </output>
+
+	<output id="rankAcceptabilities"
+           name="rankAcceptabilities"
+           displayName="rankAcceptabilities">
+           <documentation>
+               <description>Rank acceptabilities of SMAA-2 computation.</description>
+           </documentation>
+           <xmcda tag="alternativesValues"/>
+       </output>
+
+   </parameters>
+
+</program_description>
+
