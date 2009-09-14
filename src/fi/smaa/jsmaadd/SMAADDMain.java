@@ -115,22 +115,27 @@ public class SMAADDMain {
 		BufferedOutputStream bufStream = openFile(fileName);		
 		Document doc = createDocument();
 		
+		Node topNode = doc.createElement("alternativesCriteriaValues");
+		Attr conceptAttrib = doc.createAttribute("mcdaConcept");
+		conceptAttrib.setValue("confidenceFactors");
+		topNode.getAttributes().setNamedItem(conceptAttrib);
+		
+		doc.getDocumentElement().appendChild(topNode);
+		
 		Map<Alternative, Double> cfs = results.getConfidenceFactors();		
-		for (Alternative a : alts) {
-			Node cwNode = doc.createElement("confidenceFactor");
-			Node altNode = doc.createElement("alternative");
+		for (Alternative a : alts) {			
+			Node cwNode = doc.createElement("alternativeCriteriaValue");
+			Node altNode = doc.createElement("alternativeID");
 			altNode.setTextContent(a.getName());
-
+			cwNode.appendChild(altNode);
+			
 			Node valueNode = doc.createElement("value");			
 			Node realNode = doc.createElement("real");
 			realNode.setTextContent(cfs.get(a).toString());
 			valueNode.appendChild(realNode);
-
-			cwNode.appendChild(altNode);
 			cwNode.appendChild(valueNode);
-
-			doc.getDocumentElement().appendChild(cwNode);
-		}
+			topNode.appendChild(cwNode);
+		}		
 		
 		writeDocument(bufStream, doc);
 		bufStream.close();			
@@ -395,7 +400,7 @@ public class SMAADDMain {
 		List<Alternative> alts = new ArrayList<Alternative>();
 		for(int i=0;i<list.getLength();i++){ 
 			Node item = list.item(i);
-			String altName = item.getTextContent();
+			String altName = item.getAttributes().getNamedItem("id").getNodeValue();			
 			Alternative alt = new Alternative(altName);
 			alts.add(alt);
 		}
