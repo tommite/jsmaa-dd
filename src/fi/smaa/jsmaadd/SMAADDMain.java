@@ -115,7 +115,7 @@ public class SMAADDMain {
 		BufferedOutputStream bufStream = openFile(fileName);		
 		Document doc = createDocument();
 		
-		Node topNode = doc.createElement("alternativesCriteriaValues");
+		Node topNode = doc.createElement("alternativesValues");
 		Attr conceptAttrib = doc.createAttribute("mcdaConcept");
 		conceptAttrib.setValue("confidenceFactors");
 		topNode.getAttributes().setNamedItem(conceptAttrib);
@@ -124,7 +124,7 @@ public class SMAADDMain {
 		
 		Map<Alternative, Double> cfs = results.getConfidenceFactors();		
 		for (Alternative a : alts) {			
-			Node cwNode = doc.createElement("alternativeCriteriaValue");
+			Node cwNode = doc.createElement("alternativeValue");
 			Node altNode = doc.createElement("alternativeID");
 			altNode.setTextContent(a.getName());
 			cwNode.appendChild(altNode);
