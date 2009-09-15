@@ -374,7 +374,7 @@ public class SMAADDMain {
 				return c;
 			}
 		}
-		throw new Exception("Unknown criterion in impact matrix");
+		throw new Exception("Unknown criterion in performance table");
 	}
 
 	private static Alternative findAlternative(List<Alternative> alts, String altName) throws Exception {
@@ -383,7 +383,8 @@ public class SMAADDMain {
 				return a;
 			}
 		}
-		throw new Exception("Unknown alternative in impact matrix");
+		System.out.println(alts + " find " + altName);
+		throw new Exception("Unknown alternative in performance table");
 	}
 
 	private static List<Alternative> loadAlternatives(String inputDir)
